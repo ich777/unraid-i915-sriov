@@ -233,7 +233,7 @@ echo
 echo "--------------------------------"
 echo "---Uninstalling SR-IOV plugin---"
 echo "--------------------------------"
-removepkg &name;-&version;
+removepkg unraid-&name;-&version;
 rm -rf &plugin; &emhttp;
 
 # Restore libvirt.php
