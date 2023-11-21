@@ -85,6 +85,7 @@ if wget -q -nc --show-progress --progress=bar:force:noscroll -O "&packages;/${KE
     echo
     echo "-----ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR------"
     echo "--------------------------------CHECKSUM ERROR!---------------------------------"
+    removepkg unraid-&name;-&version;
     rm -rf &plugin; &emhttp;
     exit 1
   fi
@@ -94,6 +95,7 @@ else
   echo
   echo "-----ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR-----"
   echo "-----------------------Can't download SR-IOV package---------------------------"
+  removepkg unraid-&name;-&version;
   rm -rf &plugin; &emhttp;
   exit 1
 fi
