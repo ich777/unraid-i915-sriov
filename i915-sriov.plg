@@ -115,6 +115,7 @@ fi
 # Installation
 install() {
   /sbin/installpkg "&packages;/${KERNEL_V%%-*}/${PACKAGE}*.txz"
+  depmod -a
 }
 
 enable_module() {
