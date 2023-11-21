@@ -58,6 +58,16 @@ rm -f $(ls &plugin;/unraid-&name;*.txz 2>/dev/null|grep -v '&version;')
 </INLINE>
 </FILE>
 
+<FILE Name="&emhttp;/README.md">
+<INLINE>
+**Intel SR-IOV**
+
+This package contains a modified i915 driver with SR-IOV support for Intel 12Gen+ CPUs.  
+ATTENTION: This package is highly experimental and you should only install it if you know what you are doing!  
+You can get more details here: https://github.com/strongtz/i915-sriov-dkms
+</INLINE>
+</FILE>
+
 <FILE Name="&plugin;/unraid-&name;-&version;.txz" Run="upgradepkg --install-new">
 <URL>&gitURL;/packages/unraid-&name;-&version;.txz</URL>
 <MD5>&md5;</MD5>
