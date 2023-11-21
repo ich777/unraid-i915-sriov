@@ -12,7 +12,7 @@
   <!ENTITY packages  "/boot/config/plugins/&name;/packages">
 ]>
 
-<PLUGIN name="&name;"
+<PLUGIN name="intel-&name;"
         author="&author;"
         version="&version;"
         launch="&launch;"
@@ -60,7 +60,7 @@ rm -f $(ls &plugin;/unraid-&name;*.txz 2>/dev/null|grep -v '&version;')
 
 <FILE Name="&emhttp;/README.md">
 <INLINE>
-**Intel SR-IOV**
+**Intel Graphics SR-IOV**
 
 This package contains a modified i915 driver with SR-IOV support for Intel 12Gen+ CPUs.  
 ATTENTION: This package is highly experimental and you should only install it if you know what you are doing!  
