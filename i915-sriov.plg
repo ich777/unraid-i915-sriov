@@ -121,13 +121,7 @@ install() {
 }
 
 enable_module() {
-  VF_NUM="$(cat &plugin;/&name;.cfg | grep "vfnumber=" | cut -d '=' -f2 | sed "s/\"//g")"
   modprobe i915 enable_guc=3 max_vfs=7
-  sleep 2
-  if [ -f "/sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs" ]; then
-    echo ${VF_NUM} &gt; /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs 
-    /usr/local/sbin/vfio-pci
-  fi
 }
 
 #Create settings file if not found
@@ -199,6 +193,21 @@ if ! lsmod | grep -q "^i915" ; then
 else
   echo "---------------------Kernel Module 'i915' already enabled----------------------"
 fi
+
+if [ -f "/sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs" ]; then
+  VF_NUM="$(cat &plugin;/&name;.cfg | grep "vfnumber=" | cut -d '=' -f2 | sed "s/\"//g")"
+  CUR_VF_NUM="$(cat /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs)"
+  sleep 2
+  if [ "$VF_NUM" != "$CUR_VF_NUM" ]; then
+    "---Setting VFs to: ${VF_NUM}---"
+    echo ${VF_NUM} &gt; /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs
+    /usr/local/sbin/vfio-pci
+  else
+    "---VFs already set to: ${VF_NUM}---"
+    /usr/local/sbin/vfio-pci
+  fi
+fi
+
 
 if [ "$FIRST_INSTALL" == "true" ]; then
   echo
