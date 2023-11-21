@@ -1,6 +1,6 @@
 Menu="Utilities"
 Title="Intel Graphics SR-IOV"
-Icon="intel-sr-iov.png"
+Icon="intel-i915-sriov.png"
 ---
 <script>
 //Don't execute commands again if page is refreshed
