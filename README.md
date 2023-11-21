@@ -1,7 +1,8 @@
-# i915 SR-IOV module plugin for unRAID
+# Intel Graphics SR-IOV plugin for unRAID
 
-This plugin install i915 module that supports SR-IOV on unRAID.
+This plugin is based on the repostiory from [zhtengw](https://github.com/zhtengw/unraid-i915-sriov) to make sure that users can still make use of Intel Graphics SR-IOV on unRAID.
+
+The plugin driver module is based on: https://github.com/strongtz/i915-sriov-dkms
 
 ## Installation
-* Copy the raw URL of `i915-sriov.plg`, such as https://raw.githubusercontent.com/zhtengw/unraid-i915-sriov/master/i915-sriov.plg
-* Paste the URL into the text input of the "Install Plugin" tab of the Plugins Unraid UI and push "Install"
+* Copy the RAW GitHub URL from the plugin `https://raw.githubusercontent.com/ich777/unraid-i915-sriov/master/i915-sriov.plg` into your Unraid WebGUI at `Plugins` -> `Install Plugin` and click `Install`
