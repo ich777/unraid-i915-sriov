@@ -183,18 +183,22 @@ fi
 if ! lsmod | grep -q "^i915" ; then
   echo "-------------------------Loading Kernel Module 'i915'--------------------------"
   enable_module
-echo 
+else
   echo "---------------------Kernel Module 'i915' already enabled----------------------"
 fi
 
 if [ "$FIRST_INSTALL" == "true" ]; then
-  echo "------------------------------------------------------------------------------------------"
-  echo "---Installation from SR-IOV plugin successful, please reboot your server to use SR-IOV!---"
-  echo "------------------------------------------------------------------------------------------"
+  echo
+  echo "--------------------------------------------------------------------------------------------------"
+  echo "---Installation from SR-IOV plugin successful, please reboot your server to start using SR-IOV!---"
+  echo "--------------------------------------------------------------------------------------------------"
+  echo
 else
+  echo
   echo "-------------------------------------------------"
   echo "---Installation from SR-IOV plugin successful!---"
   echo "-------------------------------------------------"
+  echo
 fi
 
 #Check if Plugin Update Helper is installed and up to date
