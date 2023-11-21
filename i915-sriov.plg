@@ -6,7 +6,7 @@
   <!ENTITY launch    "Settings/intel-&name;">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/raw/master">
   <!ENTITY pluginURL "&gitURL;/&name;.plg">
-  <!ENTITY md5       "58070bf1d3a82b3df5d1aa7da25f8395">
+  <!ENTITY md5       "9516507fa265734a221750d38140756f">
   <!ENTITY plugin    "/boot/config/plugins/&name;">
   <!ENTITY emhttp    "/usr/local/emhttp/plugins/intel-&name;">
   <!ENTITY packages  "/boot/config/plugins/&name;/packages">
