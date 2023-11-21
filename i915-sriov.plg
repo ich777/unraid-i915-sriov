@@ -199,11 +199,11 @@ if [ -f "/sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs" ]; then
   CUR_VF_NUM="$(cat /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs)"
   sleep 2
   if [ "$VF_NUM" != "$CUR_VF_NUM" ]; then
-    "---Setting VFs to: ${VF_NUM}---"
+    echo "---Setting VFs to: ${VF_NUM}---"
     echo ${VF_NUM} &gt; /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs
     /usr/local/sbin/vfio-pci
   else
-    "---VFs already set to: ${VF_NUM}---"
+    echo "---VFs already set to: ${VF_NUM}---"
     /usr/local/sbin/vfio-pci
   fi
 fi
