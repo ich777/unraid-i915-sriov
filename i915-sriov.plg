@@ -201,10 +201,10 @@ if [ -f "/sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs" ]; then
   if [ "$VF_NUM" != "$CUR_VF_NUM" ]; then
     echo "---Setting VFs to: ${VF_NUM}---"
     echo ${VF_NUM} &gt; /sys/devices/pci0000:00/0000:00:02.0/sriov_numvfs
-    /usr/local/sbin/vfio-pci
+    /usr/local/sbin/vfio-pci &gt;/dev/null 2&gt;&amp;1
   else
     echo "---VFs already set to: ${VF_NUM}---"
-    /usr/local/sbin/vfio-pci
+    /usr/local/sbin/vfio-pci &gt;/dev/null 2&gt;&amp;1
   fi
 fi
 
