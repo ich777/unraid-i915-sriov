@@ -142,7 +142,7 @@ if [ ! "$(grep "blacklist" /boot/config/modprobe.d/i915.conf 2>/dev/null)" ]; th
   echo "blacklist i915" >> /boot/config/modprobe.d/i915.conf
 fi
 
-#Patch libverit.php on versions belower 6.13.0
+#Patch libverit.php on Unraid versions below 6.13.0
 TARGET_V="6.12.99"
 COMPARE="$(cat /etc/unraid-version | cut -d '=' -f2 | cut -d '"' -f2)
 $TARGET_V"
