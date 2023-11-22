@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "i915-sriov">
   <!ENTITY author    "ich777">
-  <!ENTITY version   "2023.11.21">
+  <!ENTITY version   "2023.11.22">
   <!ENTITY launch    "Settings/intel-&name;">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/raw/master">
   <!ENTITY pluginURL "&gitURL;/&name;.plg">
@@ -22,6 +22,10 @@
 
 
 <CHANGES>
+
+### 2023.11.22
+- Only apply patch for libvirt.php on Unraid versions lower than 6.13 - thanks SimonF for implementing that
+
 ### 2023.11.21
 - Updated plugin from community developer zhtengw to make sure community is able to use SRIOV
 - Use GitHub Releases for plugin package downloads
@@ -138,14 +142,18 @@ if [ ! "$(grep "blacklist" /boot/config/modprobe.d/i915.conf 2>/dev/null)" ]; th
   echo "blacklist i915" >> /boot/config/modprobe.d/i915.conf
 fi
 
-#Patch libvirt.php
-if [ ! -f /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php.orig ]; then
-  cp /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php.orig
-else
-  cp /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php.orig /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php
-fi
-# Fix PCI address error when iGPU VF assigned to VM
-cd / ; patch -p1 &lt;&lt;EOF
+#Patch libverit.php on versions belower 6.13.0
+TARGET_V="6.12.99"
+COMPARE="$(cat /etc/unraid-version | cut -d '=' -f2 | cut -d '"' -f2)
+$TARGET_V"
+if [ "$TARGET_V" == "$(echo "$COMPARE" | sort -V | tail -1)" ]; then
+  if [ ! -f /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php.orig ]; then
+    cp /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php.orig
+  else
+    cp /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php.orig /usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php
+  fi
+  # Fix PCI address error when iGPU VF assigned to VM
+  cd / ; patch -p1 &lt;&lt;EOF
 --- a/usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php	
 +++ b/usr/local/emhttp/plugins/dynamix.vm.manager/include/libvirt.php	
 @@ -780,7 +780,15 @@
@@ -166,6 +174,7 @@ cd / ; patch -p1 &lt;&lt;EOF
  
  					\$strRomFile = '';
 EOF
+fi
 
 #Define Variables
 KERNEL_V="$(uname -r)"
