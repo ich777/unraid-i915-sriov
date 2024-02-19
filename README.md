@@ -1,3 +1,6 @@
+# DEPRECATED
+### Please use: https://github.com/giganode/unraid-i915-sriov  
+  
 # Intel Graphics SR-IOV plugin for unRAID
 
 This plugin is based on the repostiory from [zhtengw](https://github.com/zhtengw/unraid-i915-sriov) to make sure that users can still make use of Intel Graphics SR-IOV on unRAID.
